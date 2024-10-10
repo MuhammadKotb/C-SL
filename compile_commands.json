@@ -1,0 +1,28 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I./src/include/",
+      "-o",
+      "main",
+      "src/main.c"
+    ],
+    "directory": "/home/kotb/code/C-STL",
+    "file": "/home/kotb/code/C-STL/src/main.c",
+    "output": "/home/kotb/code/C-STL/main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/gcc",
+      "-c",
+      "-I./src/include/",
+      "-o",
+      "main",
+      "src/murmur3.c"
+    ],
+    "directory": "/home/kotb/code/C-STL",
+    "file": "/home/kotb/code/C-STL/src/murmur3.c",
+    "output": "/home/kotb/code/C-STL/main"
+  }
+]
