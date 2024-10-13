@@ -1,5 +1,9 @@
 CFLAGS += -I./src/include/
-SOURCES := src/main.c src/murmur3.c
+CFLAGS += -std=c11
+CFLAGS += -g
+CFLAGS += -Wall
+
+SOURCES := src/main.c src/murmur3.c src/hashtable.c
 
 build:
 								gcc $(SOURCES) -o main $(CFLAGS)

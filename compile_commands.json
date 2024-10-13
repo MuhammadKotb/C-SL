@@ -4,6 +4,7 @@
       "/usr/bin/gcc",
       "-c",
       "-I./src/include/",
+      "-std=c11",
       "-o",
       "main",
       "src/main.c"
@@ -17,6 +18,7 @@
       "/usr/bin/gcc",
       "-c",
       "-I./src/include/",
+      "-std=c11",
       "-o",
       "main",
       "src/murmur3.c"

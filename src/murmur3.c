@@ -15,14 +15,12 @@ void murmurHash_32(const void *key, const size_t len, const u_int32_t seed, void
   u_int32_t hash = seed;
 
   const int nblocks = len / 4;
-  ;
+
   const u_int32_t* blocks_arr = (const u_int32_t*)((const u_int8_t*)key + nblocks * 4);
-  printf("%p\n", blocks_arr);
-  printf("%d\n", *blocks_arr);
+
   for(size_t i = -nblocks; i; i++) {
     
     u_int32_t fourByteBlock = blocks_arr[i];
-    printf("loop\n");
     fourByteBlock = fourByteBlock * c1;
     fourByteBlock = (fourByteBlock << r1) | (fourByteBlock >> (32 - r1));
     fourByteBlock = fourByteBlock * c2;
@@ -34,7 +32,6 @@ void murmurHash_32(const void *key, const size_t len, const u_int32_t seed, void
     hash = hash + n;
 
   }
-  printf("after loop\n");
   const u_int8_t* tail = (const u_int8_t *)((const u_int8_t*)key + nblocks * 4);
   
   u_int32_t fourByteBlock = 0;
