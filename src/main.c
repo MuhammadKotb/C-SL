@@ -98,14 +98,15 @@ int main(int argc, char *argv[]) {
   // MurmurHash3_x86_32(key2, sizeof(int), 0xbc9f1d34, &out2);
   // printf("%u\n", out2);
 
-
   hashtable map = create_hashtable(INT, INT);
   map._insert_int(&map, 77, 10);
   map._insert_int(&map, 3, 44);
-  map._insert_int(&map, 3225, 10);
+  map._insert_int(&map, 3225, 5);
   map._insert_int(&map, 555557, 322);
   map._insert_int(&map, 58802, 233);
-  map._insert_int(&map, 55689, 1113);
+  map._insert_int(&map, 16, 2);
+
+  map._delete_int(&map, 3);
 
   printf("inserted\n");
 
@@ -115,4 +116,6 @@ int main(int argc, char *argv[]) {
     map._get_int(&map, keys[i], &value);
     printf("%d %d\n", keys[i], value);
   }
+
+  map._destroy(&map);
 }

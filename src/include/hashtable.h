@@ -6,6 +6,7 @@
 
 
 #define EMPTY_BUCKET 
+#define HASH_SEED 0xbc9f1d34
 
 struct _hashtable_int;
 struct _hashtable_float;
@@ -35,8 +36,16 @@ typedef struct hashtable {
     void (*_insert_double)(hashtable*, double, double);
   };
   union {
-    void (*_get_int)(hashtable*, int, int*);
+    void (*_delete_int)(hashtable*, int);
+    void (*_delete_float)(hashtable*, float);
+    void (*_delete_double)(hashtable*, double);
   };
+  union {
+    void (*_get_int)(hashtable*, int, int*);
+    void (*_get_float)(hashtable*, float, float*);
+    void (*_get_double)(hashtable*, double, double*);
+  };
+  void (*_destroy)(hashtable*);
   size_t size;
   size_t cap;
   size_t initial_cap;
@@ -45,15 +54,22 @@ typedef struct hashtable {
 typedef struct bucket_int {
   int value;
   u_int32_t hash;
+  bucket_int* next;
+  bucket_int* prev;
 } bucket_int;
 
 
 void _insert_int(hashtable* hashtable, int new_key, int new_value);
-void _insert_value_int(hashtable *hashtable, bucket_int bucket, size_t index);
+void _delete_int(hashtable*, int);
 void _get_int(hashtable* hashtable, int key, int* value);
-bucket_int _get_bucket_int(hashtable* hashtable, int key, size_t index);
 
+void _insert_bucket_int(hashtable* hashtable, size_t index, bucket_int* bucket);
+void _move_bucket_int(hashtable* hashtable, size_t old_index, size_t index, bucket_int* bucket);
+void _delete_bucket_int(hashtable* hashtable, u_int32_t hash, size_t index);
+bucket_int* _get_bucket_int(hashtable* hashtable, int key, size_t index);
+size_t _get_bucket_length(hashtable* hashtable, size_t index);
 void _rehash_int(hashtable* hashtable);
+void _destroy(hashtable* hashtable);
 
 void _insert_float(hashtable* hashtable, float new_key, float new_value);
 void _insert_value_float(float** values, float new_value, size_t index);
